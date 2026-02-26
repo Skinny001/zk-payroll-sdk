@@ -28,3 +28,20 @@ await service.processPayment(
 - **Contract Wrappers**: Typed interfaces for Soroban contracts.
 - **ZK Proof Generation**: Client-side proof generation for privacy.
 - **Error Handling**: Robust error typing and management.
+- **Mock Testing Environment**: Comprehensive testing utilities for unit tests without a live network.
+
+## Testing
+
+The SDK includes a powerful mock testing environment for writing unit tests:
+
+```typescript
+import { MockContractEnvironment, MockPayrollContract } from "@zk-payroll/sdk";
+
+const mockEnv = new MockContractEnvironment();
+mockEnv.expectInvoke("deposit").toReturn("tx_hash_123");
+
+const mockContract = new MockPayrollContract(mockEnv);
+const txHash = await mockContract.deposit(1000n);
+```
+
+See the [Testing Guide](docs/TESTING.md) for complete documentation.
